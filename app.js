@@ -15,11 +15,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.listen(port);
 
-app.all('*', function(req,res,next) {
-   console.log("Request Recieved");
-   req.next();
-});
-
 app.get('/', function(req,res) {
     res.redirect('/apidoc');
 });
@@ -49,4 +44,10 @@ app.post('/isRegToChannel/:id', function(req,res) {
     main.isRegToChannel(req,res);
 });
 
-console.log('listening on port ${port}');
+app.all('*', function(req,res,next) {
+    console.log("Request Recieved");
+    res.send({code:404,err:'No Request Route Found'});
+});
+
+
+console.log('listening on port: '+port);
