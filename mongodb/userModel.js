@@ -10,7 +10,7 @@ var userSchema = new Schema({
     lastName: String,
     address: String,
     email: String,
-    cDate: String,
+    cDate: Date,
     channels: [{
         name: String,
         price: Number,

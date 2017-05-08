@@ -9,22 +9,23 @@ var bodyParser = require('body-parser');
 var main = require('./controller.js');
 require('./mongodb/mongoConnect.js');
 
+app.use(express.static(__dirname + '/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.listen(port);
 
 app.all('*', function(req,res,next) {
-   console.log("logged in");
+   console.log("Request Recieved");
    req.next();
+});
+
+app.get('/', function(req,res) {
+    res.redirect('/apidoc');
 });
 
 app.get('/getAllUsers', function(req,res) {
     main.getAllUsers(req,res);
-});
-
-app.get('/getUserChannels', function(req,res) {
-    main.getUserChannels(req,res);
 });
 
 app.get('/getAllChannels', function(req,res) {
