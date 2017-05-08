@@ -46,7 +46,7 @@ app.post('/isRegToChannel/:id', function(req,res) {
 
 app.all('*', function(req,res,next) {
     console.log("Request Recieved");
-    res.send({code:404,err:'No Request Route Found'});
+    res.send('404 NO REQUEST FOUND');
 });
 
 
